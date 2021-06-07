@@ -27,6 +27,8 @@ export default {
     flex-wrap: wrap;
     padding: 5px;
     justify-content: space-around;
+    box-sizing: border-box;
+    width: 100%;
   }
 
   .goods-List .item {

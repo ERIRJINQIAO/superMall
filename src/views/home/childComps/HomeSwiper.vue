@@ -1,12 +1,8 @@
 <template>
-  <swiper  v-if="banners.length">
-    <swiper-item
-      v-for="item in banners"
-      :key="item.id"
-      ref="swiper"
-    >
+  <swiper v-if="banners.length">
+    <swiper-item v-for="item in banners" :key="item.id" ref="swiper">
       <a :href="item.link">
-        <img :src="item.image" alt="" />
+        <img :src="item.image" alt="" @load="swiperImgLoad" />
       </a>
     </swiper-item>
   </swiper>
@@ -23,13 +19,23 @@ export default {
     banners: {
       type: Array,
       default() {
-        return [];
+        return {
+          isload: false, //限制只需要等一张banner图加载完成后开始计算首页tab与顶部的距离
+        };
       },
     },
   },
   components: {
     Swiper,
     SwiperItem,
+  },
+  methods: {
+    swiperImgLoad() {
+      if (!this.isload) {
+        this.$emit("swiperImgLoad");
+        this.isload = true;
+      }
+    },
   },
 };
 </script>

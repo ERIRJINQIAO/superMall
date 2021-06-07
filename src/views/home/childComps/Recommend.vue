@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="recommendList">
-      <li v-for="(item, index) in recommendList" :key = "item.index">
+      <li v-for="item in recommendList" :key = "item.index">
         <a :href="item.link">
           <img :src="item.image" alt="" />
           <h3>{{ item.title }}</h3>
